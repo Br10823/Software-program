@@ -81,8 +81,6 @@ int main() {
         cout << "File not open" << endl;
     }
 
-    cout << "algo bien qno" << endl;
-
 	iMaterialID.close();
     
 	x = 0;
