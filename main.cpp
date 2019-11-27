@@ -50,7 +50,6 @@ int main() {
             string line;
             getline(iMaterialID, line);
             splittedLine = split(line);
-            cout << "Size: " << splittedLine.size() << endl << flush;
             int iMID = stoi(splittedLine[0]);
             string title = splittedLine[1];
             char TMaterial = splittedLine[2][0];
@@ -60,22 +59,16 @@ int main() {
                     int PageNum = stoi(splittedLine[3]);
                     string author = splittedLine[4];
                     materials.push_back(new Book(PageNum, author, iMID, title));
-                    cout << TMaterial << endl;
-                    cout << flush;
                 }
                 break;
                 case 'C': {
                     int duration = stoi(splittedLine[3]);
-                    materials.push_back(new CD(duration, iMID, title)); 
-                    cout << TMaterial << endl;
-                    cout << flush;
+                    materials.push_back(new CD(duration, iMID, title));
                 }
                 break;
                 case 'S': {
                     string opsis = splittedLine[3];
                     materials.push_back(new Software(opsis, iMID, title));
-                    cout << TMaterial << endl;
-                    cout << flush;
                 }
                 break;
             }
@@ -99,12 +92,12 @@ int main() {
 
 	do {
 		cout << "**** MENU ****" << endl;
-		cout << "a) Display the list of materials" << endl;
-		cout << "b) Display the list of Reservations" << endl;
-		cout << "c) Display the reservations of a given material" << endl;
-		cout << "d) Display the reservations of a given date" << endl;
-		cout << "e) Do a reservation" << endl;
-		cout << "f) Finish the program" << endl;
+		cout << "1) Display the list of materials" << endl;
+		cout << "2) Display the list of Reservations" << endl;
+		cout << "3) Display the reservations of a given material" << endl;
+		cout << "4) Display the reservations of a given date" << endl;
+		cout << "5) Do a reservation" << endl;
+		cout << "6) Finish the program" << endl;
 		cin >> option;
         
 		switch (option) {
