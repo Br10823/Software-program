@@ -1,6 +1,7 @@
 {
     "files.associations": {
-        "iosfwd": "cpp",
-        "string": "cpp"
+      "iosfwd": "cpp",
+      "string": "cpp",
+      "new": "cpp"
     }
 }

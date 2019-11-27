@@ -11,7 +11,7 @@
 using namespace std;
 
 vector<string> split(string line){
-    string element;
+    string element = "";
     vector<string> splitted;
 
     for(int i = 0; i < line.length(); i++){
@@ -23,57 +23,61 @@ vector<string> split(string line){
         }
     }
 
+    splitted.push_back(element);
+
     return splitted;
 }
 
 int main() {
-	Material* materials[20];
-	Reservation* reservations[50];
-	char TMaterial;
-	int x, PageNum, duration, y, d, m, y1, iMatID, iClID, iMID, iClieID, option;
+	vector<Material*> materials;
+  vector<Reservation*> reservations;
+	int x, y, d, m, y1, iMatID, iClID, iClieID, option;
 	Date D1, DReservation;
 	bool verify;
-	string title, author, opsis;
 
 	for (x = 0; x < 50; x++) {
-		Date D1;
-		reservations[x] = new Reservation(-1, -1, D1);
+		reservations.push_back(new Reservation(-1, -1, D1));
 	}
   
 	ifstream iMaterialID("material.txt");
-    ifstream iDReservation("reservation.txt");
+  ifstream iDReservation("reservation.txt");
+  
 	x = 0;
 
     if(iMaterialID.is_open()){
         while (!iMaterialID.eof()) {
-        cout << iMaterialID.eof() << endl;
             vector<string> splittedLine;
             string line;
             getline(iMaterialID, line);
             splittedLine = split(line);
+            cout << "Size: " << splittedLine.size() << endl << flush;
             int iMID = stoi(splittedLine[0]);
             string title = splittedLine[1];
             char TMaterial = splittedLine[2][0];
-
-            cout << TMaterial << endl;
 
             switch (TMaterial) {
                 case 'B': {
                     int PageNum = stoi(splittedLine[3]);
                     string author = splittedLine[4];
-                    materials[x] = new Book(PageNum, author, iMID, title);
-                    break;
+                    materials.push_back(new Book(PageNum, author, iMID, title));
+                    cout << TMaterial << endl;
+                    cout << flush;
                 }
+                break;
                 case 'C': {
                     int duration = stoi(splittedLine[3]);
-                    materials[x] = new CD(duration, iMID, title);
-                    break;
+                    materials.push_back(new CD(duration, iMID, title)); 
+                    cout << TMaterial << endl;
+                    cout << flush;
                 }
+                break;
                 case 'S': {
                     string opsis = splittedLine[3];
-                    materials[x] = new Software(opsis, iMID, title);
-                    break;
+                    materials.push_back(new Software(opsis, iMID, title));
+                    cout << TMaterial << endl;
+                    cout << flush;
                 }
+                break;
             }
             x++;
         }
@@ -85,6 +89,7 @@ int main() {
     
 	x = 0;
 	while (!iDReservation.eof()) {
+    int iMID;
 		iDReservation >> d >> m >> y1 >> iMID >> iClieID;
 		Date D1(d, m, y1);
 		reservations[x] = new Reservation(iMID, iClieID, D1);

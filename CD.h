@@ -1,5 +1,3 @@
-#ifndef CD_h
-#define CD_h
 #include "Material.h"
 using namespace std;
 
@@ -9,7 +7,7 @@ private:
     
 public:
     CD();
-    CD(int, int, string);
+    CD(int iDura, int iMatID, string sTitl);
     int getiDuration();
     void setiDuration(int);
     void toString();
@@ -46,5 +44,3 @@ void CD::toString() {
     cout << "CD title: " << sTitle << endl;
     cout << "Duration: " << iDuration << endl;
 }
-
-#endif
